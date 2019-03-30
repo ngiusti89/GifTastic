@@ -1,12 +1,16 @@
-$(document).ready(function () {
+$(document).ready(function() {
     // document ready
     console.log("ready");
 
     // array of 90s movies called topics
-    var topics = ["Jurassic Park", "Titanic", "The Lion King", "10 Things I Hate About You", "Home Alone", "The Matrix", "Space Jam"]
+    var topics = ["Jurassic Park", "Titanic", "The Lion King", "Space Jam", "10 Things I Hate About You", "Home Alone", "The Matrix"];
 
     // function creates an array of buttons from "topics" array
     function createButtons() {
+
+        $("#buttons-div").empty();
+
+        // loops through movies array
         for (var i = 0; i < topics.length; i++) {
             // creates actual buttons
             var btn = $('<button>');
@@ -20,27 +24,31 @@ $(document).ready(function () {
             $('#buttons-div').append(btn);
         }
     }
-    // calls function
+    // calls/runs function
     createButtons();
 
+
     $('.90s-movies').click(function() {
-        // test buttons pull names
-        console.log($(this).data('name'));
+        console.log($(this).data('name')); // test buttons pull movie names
+
+        var movie = $(this).attr("data-name");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=r5rzmEF5dvBlgMheFWcsLR869s2tvSwr";
+
+$.ajax({
+        url: queryURL,
+        type: 'GET',
+    }).done(function(response){
+        console.log(response); // logs object data info
 
 
-
-
-        
-      });
+    })
+    });
 
 
 
 });
 
-// function searchGif(gifName) {
-//     $.ajax({
-//         url: 'https://api.giphy.com/v1/gifs/search?q= ' + gifName + ' &api_key=r5rzmEF5dvBlgMheFWcsLR869s2tvSwr',
-//         type: 'GET',
-//     })
-// }
+function searchGif(gifName) {
+    
+}
 
