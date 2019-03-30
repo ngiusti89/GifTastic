@@ -1,0 +1,22 @@
+/* background image */
+body {
+    background-image: url("../images/maxresdefault.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  #header {
+    background: rgba(255, 255, 255, 0.5);
+    
+  }
+
+  .movies{
+    background-color: darkcyan;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 3px;
+  }
