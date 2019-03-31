@@ -1,5 +1,4 @@
 /* background image */
-
 body {
     background-image: url("../images/officeSpaceWindows.jpg");
     background-repeat: no-repeat;
@@ -8,10 +7,23 @@ body {
     background-size: cover;
 }
 
+/* rating text */
+p {
+    text-transform: uppercase;
+    color: white;
+}
+
+/* header */
 #header {
     background: rgba(255, 255, 255, 0.5);
 }
 
+/* user input form */
+#input {
+    float: right;
+}
+
+/* movie buttons */
 .movies {
     background-color: darkslategray;
     color: white;
@@ -21,16 +33,13 @@ body {
     margin: 3px;
 }
 
+/* gif div */
 .gifs {
     display: inline-block;
     margin: 5px;
 }
 
-p {
-    text-transform: uppercase;
-    color: white;
-}
-
+/* submit button */
 .submit {
     background-color: white;
     color: black;

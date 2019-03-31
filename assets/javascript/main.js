@@ -6,7 +6,6 @@ $(document).ready(function () {
 
     // function creates an array of buttons from "topics" array
     function createButtons() {
-
         $("#buttons-div").empty();
 
         // loops through movies array
@@ -17,7 +16,7 @@ $(document).ready(function () {
             btn.attr('data-name', topics[i]);
             // adds display text (movie names) to button from array
             btn.text(topics[i]);
-            // adds all the buttons to one class called 90s-movies
+            // adds all the buttons to one class called movies
             btn.addClass('movies');
             // puts buttons in the div and appends them after one another
             $('#buttons-div').append(btn);
@@ -26,8 +25,29 @@ $(document).ready(function () {
     // calls/runs function
     createButtons();
 
+    // creates input form and submit button to take user addition
+    var movieInput = $('<input type="text" id="movie-input" />');
+    var submit = $('<input type="button" value="Submit" class="submit" id="add-movie">');
 
-    $('.movies').click(function () {
+    // adds user input elements to div
+    $("#input").append(movieInput).append(submit);
+
+    // function takes user input from form and adds it to array as a button
+    $(document).on('click', '#add-movie', function () {
+        // console.log("submit") // tests created button clicks
+        event.preventDefault();
+        var userInput = $('#movie-input').val().trim();
+        // console.log(userInput) // tests text being pulled from input
+        // adds input to topics array
+        topics.push(userInput);
+
+        // creates the new button
+        createButtons();
+
+    })
+
+    // when a movie button is clicked, 10 gifs will be returned
+    $(document).on('click', '.movies', function () {
         console.log($(this).data('name')); // test buttons pull movie names
         var movie = $(this).attr("data-name");
         // url with giphy api, api key, limit and rating parameters
@@ -68,7 +88,6 @@ $(document).ready(function () {
         })
     });
 
-
     // click function to toggle between displaying still or animated gifs
     $(document).on('click', '.gif', function () {
         // // // tried a different way to write that function, didnt work
@@ -85,24 +104,5 @@ $(document).ready(function () {
         }
 
     })
-
-
-    var movieInput = $('<input type="text" id="movie-input" />');
-    var submit = $('<input type="button" value="Submit" class="submit" id="add-movie">');
-
-    $(document).on('click', '#add-movie', function () {
-        console.log("submit") // tests created button clicks
-        event.preventDefault();
-        var userInput = $('#movie-input').val().trim();
-        console.log(userInput) // tests text being pulled from input
-        // adds input to topics array
-        topics.push(userInput);
-        // creates the new button
-        createButtons();
-
-    })
-
-    $("#gifs").prepend(movieInput).after(submit)
-
 
 });
