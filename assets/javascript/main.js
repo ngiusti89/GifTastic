@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    console.log("ready"); // document ready
+    // console.log("ready"); // document ready
 
     // array of 90s movies called topics
     var topics = ["Jurassic Park", "Titanic", "The Lion King", "Space Jam", "10 Things I Hate About You", "Home Alone", "The Matrix"];
@@ -30,7 +30,8 @@ $(document).ready(function () {
     $('.movies').click(function () {
         console.log($(this).data('name')); // test buttons pull movie names
         var movie = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=r5rzmEF5dvBlgMheFWcsLR869s2tvSwr&limit=10";
+        // url with giphy api, api key, limit and rating parameters
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=r5rzmEF5dvBlgMheFWcsLR869s2tvSwr&rating=pg&limit=10";
 
         // ajax call 
         $.ajax({
@@ -43,17 +44,22 @@ $(document).ready(function () {
             for (var i = 0; i < results.length; i++) {
                 // creates div for result gifs
                 var gifDiv = $('<div class=gifs>');
-                // 
+                // setting attributes for gifs
                 var movieImg = $("<img>");
                 movieImg.attr("src", results[i].images.fixed_height_still.url);
                 movieImg.attr("data-still", results[i].images.fixed_height_still.url);
                 movieImg.attr("data-animate", results[i].images.fixed_height.url);
                 movieImg.attr("data-state", "still");
 				movieImg.addClass('gif');
-
+                // puts images in div
                 gifDiv.append(movieImg)
+                // 
+                var pRating = $("<p>").text("Rating: " + results[i].rating);
 
-                $("#gifs").prepend(gifDiv);
+                gifDiv.append(pRating)
+
+                // displays gif div in gifs div re html
+                $("#gifs").append(gifDiv);
 
                 
             }

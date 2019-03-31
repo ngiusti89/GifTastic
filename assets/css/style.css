@@ -1,6 +1,6 @@
 /* background image */
 body {
-    background-image: url("../images/maxresdefault.jpg");
+    background-image: url("../images/officeSpaceWindows.jpg");
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -13,10 +13,12 @@ body {
   }
 
   .movies{
-    background-color: darkcyan;
+    background-color: darkslategray;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
     margin: 3px;
   }
+
+  .gifs
