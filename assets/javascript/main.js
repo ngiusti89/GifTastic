@@ -47,9 +47,9 @@ $(document).ready(function () {
                 var gifDiv = $('<div class=gifs>');
                 // creates variable for movie gifs & sets attributes them
                 var movieImg = $("<img>");
-                movieImg.attr("src", results[i].images.fixed_width_still.url);
-                movieImg.attr("data-still", results[i].images.fixed_width_still.url);
-                movieImg.attr("data-animate", results[i].images.fixed_width.url);
+                movieImg.attr("src", results[i].images.fixed_height_still.url);
+                movieImg.attr("data-still", results[i].images.fixed_height_still.url);
+                movieImg.attr("data-animate", results[i].images.fixed_height.url);
                 movieImg.attr("data-state", "still");
                 movieImg.addClass('gif');
                 // puts images in div after one another
@@ -81,7 +81,6 @@ $(document).ready(function () {
             $(this).attr("src", $(this).data("still"));
             $(this).attr("data-state", "still");
         }
-
     })
 
     // creates input form and submit button to take user addition
