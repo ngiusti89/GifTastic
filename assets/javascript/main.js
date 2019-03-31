@@ -40,33 +40,69 @@ $(document).ready(function () {
         }).done(function (response) {
             console.log(response.data); // logs object data info
             var results = response.data;
+            // empties the div of gifs to make room for more
+            $('#gifs').empty();
             // loops through result gifs
             for (var i = 0; i < results.length; i++) {
                 // creates div for result gifs
                 var gifDiv = $('<div class=gifs>');
-                // setting attributes for gifs
+                // creates variable for movie gifs & sets attributes them
                 var movieImg = $("<img>");
-                movieImg.attr("src", results[i].images.fixed_height_still.url);
-                movieImg.attr("data-still", results[i].images.fixed_height_still.url);
-                movieImg.attr("data-animate", results[i].images.fixed_height.url);
+                movieImg.attr("src", results[i].images.fixed_width_still.url);
+                movieImg.attr("data-still", results[i].images.fixed_width_still.url);
+                movieImg.attr("data-animate", results[i].images.fixed_width.url);
                 movieImg.attr("data-state", "still");
-				movieImg.addClass('gif');
-                // puts images in div
+                movieImg.addClass('gif');
+                // puts images in div after one another
                 gifDiv.append(movieImg)
-                // 
+                // creates ratings varible and adds display text of "Rating: " followed by rating pulled from objects data
                 var pRating = $("<p>").text("Rating: " + results[i].rating);
-
+                // // // test for ratings
+                // // var rating = results[i].rating
+                // // console.log(rating);
+                // appends rating to gifs
                 gifDiv.append(pRating)
-
-                // displays gif div in gifs div re html
+                // displays gif in div
                 $("#gifs").append(gifDiv);
-
-                
             }
-
-
         })
     });
+
+
+    // click function to toggle between displaying still or animated gifs
+    $(document).on('click', '.gif', function () {
+        // // // tried a different way to write that function, didnt work
+        // // $('.gif').on("click", function(){
+        var state = $(this).attr("data-state");
+        // // logs if still or animated
+        // console.log(state)
+        if (state == "still") {
+            $(this).attr("src", $(this).data("animate"));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).data("still"));
+            $(this).attr("data-state", "still");
+        }
+
+    })
+
+
+    var movieInput = $('<input type="text" id="movie-input" />');
+    var submit = $('<input type="button" value="Submit" class="submit" id="add-movie">');
+
+    $(document).on('click', '#add-movie', function () {
+        console.log("submit") // tests created button clicks
+        event.preventDefault();
+        var userInput = $('#movie-input').val().trim();
+        console.log(userInput) // tests text being pulled from input
+        // adds input to topics array
+        topics.push(userInput);
+        // creates the new button
+        createButtons();
+
+    })
+
+    $("#gifs").prepend(movieInput).after(submit)
 
 
 });
