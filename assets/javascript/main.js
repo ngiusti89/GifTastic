@@ -25,27 +25,6 @@ $(document).ready(function () {
     // calls/runs function
     createButtons();
 
-    // creates input form and submit button to take user addition
-    var movieInput = $('<input type="text" id="movie-input" />');
-    var submit = $('<input type="button" value="Submit" class="submit" id="add-movie">');
-
-    // adds user input elements to div
-    $("#input").append(movieInput).append(submit);
-
-    // function takes user input from form and adds it to array as a button
-    $(document).on('click', '#add-movie', function () {
-        // console.log("submit") // tests created button clicks
-        event.preventDefault();
-        var userInput = $('#movie-input').val().trim();
-        // console.log(userInput) // tests text being pulled from input
-        // adds input to topics array
-        topics.push(userInput);
-
-        // creates the new button
-        createButtons();
-
-    })
-
     // when a movie button is clicked, 10 gifs will be returned
     $(document).on('click', '.movies', function () {
         console.log($(this).data('name')); // test buttons pull movie names
@@ -103,6 +82,26 @@ $(document).ready(function () {
             $(this).attr("data-state", "still");
         }
 
+    })
+
+    // creates input form and submit button to take user addition
+    var movieInput = $('<input type="text" id="movie-input" />');
+    var submit = $('<input type="button" value="Add a movie!" class="submit" id="add-movie">');
+
+    // adds user input elements to div
+    $("#input").append(movieInput).append(submit);
+
+    // function takes user input from form and adds it to array as a button
+    $(document).on('click', '#add-movie', function () {
+        // console.log("submit") // tests created button clicks
+        event.preventDefault();
+        var userInput = $('#movie-input').val().trim();
+        // console.log(userInput) // tests text being pulled from input
+        // adds input to topics array
+        topics.push(userInput);
+
+        // creates the new button
+        createButtons();
     })
 
 });
